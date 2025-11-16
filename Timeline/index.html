@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historia de la Ingeniería en Sistemas Computacionales</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 40px 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding-bottom: 30px;
+            border-bottom: 3px solid #667eea;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            color: #2d3748;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header p {
+            font-size: 1.2em;
+            color: #718096;
+            font-weight: 300;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, #667eea, #764ba2);
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 60px;
+            position: relative;
+            opacity: 0;
+            animation: fadeIn 0.6s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+            }
+        }
+
+        .timeline-item:nth-child(1) { animation-delay: 0.1s; }
+        .timeline-item:nth-child(2) { animation-delay: 0.2s; }
+        .timeline-item:nth-child(3) { animation-delay: 0.3s; }
+        .timeline-item:nth-child(4) { animation-delay: 0.4s; }
+        .timeline-item:nth-child(5) { animation-delay: 0.5s; }
+        .timeline-item:nth-child(6) { animation-delay: 0.6s; }
+        .timeline-item:nth-child(7) { animation-delay: 0.7s; }
+        .timeline-item:nth-child(8) { animation-delay: 0.8s; }
+        .timeline-item:nth-child(9) { animation-delay: 0.9s; }
+        .timeline-item:nth-child(10) { animation-delay: 1s; }
+        .timeline-item:nth-child(11) { animation-delay: 1.1s; }
+        .timeline-item:nth-child(12) { animation-delay: 1.2s; }
+        .timeline-item:nth-child(13) { animation-delay: 1.3s; }
+        .timeline-item:nth-child(14) { animation-delay: 1.4s; }
+        .timeline-item:nth-child(15) { animation-delay: 1.5s; }
+        .timeline-item:nth-child(16) { animation-delay: 1.6s; }
+
+        .timeline-item.left {
+            flex-direction: row;
+            justify-content: flex-start;
+        }
+
+        .timeline-item.right {
+            flex-direction: row-reverse;
+            justify-content: flex-start;
+        }
+
+        .timeline-content {
+            width: 45%;
+            padding: 25px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-content:hover {
+            transform: scale(1.03);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            border-color: #667eea;
+        }
+
+        .timeline-image {
+            width: 100%;
+            height: 250px;
+            object-fit: contain;
+            background: #f7fafc;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border: 3px solid #e2e8f0;
+            padding: 10px;
+        }
+
+        .timeline-year {
+            display: inline-block;
+            padding: 8px 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 25px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-bottom: 15px;
+        }
+
+        .timeline-title {
+            font-size: 1.3em;
+            color: #2d3748;
+            margin-bottom: 12px;
+            font-weight: 600;
+        }
+
+        .timeline-description {
+            color: #4a5568;
+            line-height: 1.6;
+            font-size: 0.95em;
+        }
+
+        .timeline-icon {
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 50px;
+            height: 50px;
+            background: white;
+            border: 4px solid #667eea;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            z-index: 10;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 60px;
+            padding-top: 30px;
+            border-top: 2px solid #e2e8f0;
+        }
+
+        .footer p {
+            color: #718096;
+            font-size: 0.95em;
+            margin-bottom: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item.left,
+            .timeline-item.right {
+                flex-direction: row;
+                padding-left: 80px;
+            }
+
+            .timeline-content {
+                width: 100%;
+            }
+
+            .timeline-icon {
+                left: 30px;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .timeline-image {
+                height: 150px;
+            }
+        }
+
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+            }
+            
+            .timeline-content:hover {
+                transform: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🖥️ Historia de la Ingeniería en Sistemas Computacionales</h1>
+            <p></strong>Evolución de una profesión que transformó el mundo</strong></p>
+        </div>
+
+        <div class="timeline">
+            <!-- Evento 1 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">💡</div>
+                <div class="timeline-content">
+                    <img src="images/ada-lovelace.jpg" alt="Ada Lovelace" class="timeline-image">
+                    <span class="timeline-year">1843</span>
+                    <h3 class="timeline-title">Primera Programadora de la Historia</h3>
+                    <p class="timeline-description">
+                        Augusta Ada Lovelace publica notas sobre la máquina analítica de Charles Babbage, 
+                        creando el primer algoritmo destinado a ser procesado por una máquina. Es considerada 
+                        la primera programadora de la historia, utilizando bucles y demostrando la capacidad 
+                        de bifurcación de la máquina de Babbage. Su trabajo visionario anticipa el potencial 
+                        de las computadoras más allá del simple cálculo numérico.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 2 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">🧠</div>
+                <div class="timeline-content">
+                    <img src="images/alan-turing.jpg" alt="Alan Turing" class="timeline-image">
+                    <span class="timeline-year">1936</span>
+                    <h3 class="timeline-title">Primera Teoría sobre el Software</h3>
+                    <p class="timeline-description">
+                        Alan Turing propone su teoría fundamental en el ensayo sobre números computables, 
+                        estableciendo las bases teóricas de la computación moderna. Turing es considerado 
+                        el padre de la inteligencia artificial y la informática moderna, revolucionando 
+                        el concepto de máquinas que pueden realizar cálculos y sentando las bases matemáticas 
+                        de la computación.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 3 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">🏢</div>
+                <div class="timeline-content">
+                    <img src="images/belllabs.jpg" alt="Bell Telephone" class="timeline-image">
+                    <span class="timeline-year">1940</span>
+                    <h3 class="timeline-title">Origen en Bell Telephone Laboratories</h3>
+                    <p class="timeline-description">
+                        Se establece la expresión "Ingeniería de Sistemas" en los Laboratorios Bell Telephone. 
+                        Surge la necesidad de gestionar sistemas complejos de comunicación como un todo integrado, 
+                        sentando las bases conceptuales de la disciplina. Este enfoque holístico marca el 
+                        nacimiento formal de la ingeniería de sistemas como campo profesional.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 4 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">⚡</div>
+                <div class="timeline-content">
+                    <img src="images/eniac.jpg" alt="ENIAC" class="timeline-image">
+                    <span class="timeline-year">1946</span>
+                    <h3 class="timeline-title">Construcción de la ENIAC</h3>
+                    <p class="timeline-description">
+                        Se construye en la Universidad de Pennsylvania la ENIAC (Electronic Numerical Integrator 
+                        And Computer), la primera computadora electrónica de propósito general. Diseñada por 
+                        John Eckert y John Mauchly, medía 3 metros de alto y utilizaba 18,000 válvulas, 
+                        marcando el inicio de la era de las computadoras electrónicas y transformando el 
+                        procesamiento de información.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 5 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">🎓</div>
+                <div class="timeline-content">
+                    <img src="images/mit.jpg" alt="MIT" class="timeline-image">
+                    <span class="timeline-year">1950</span>
+                    <h3 class="timeline-title">Primer Curso Académico en el MIT</h3>
+                    <p class="timeline-description">
+                        Melvin J. Kelly publica formalmente la "Ingeniería en Sistemas" y se establece el 
+                        primer curso de postgrado en el MIT. Arthur D. Hall se convierte en pionero académico, 
+                        marcando el inicio de la formación profesional estructurada en esta área. Este programa 
+                        establece el modelo educativo para la disciplina a nivel mundial.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 6 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">📝</div>
+                <div class="timeline-content">
+                    <img src="images/grace-murray-hopper.jpg" alt="Grace Hopper" class="timeline-image">
+                    <span class="timeline-year">1956</span>
+                    <h3 class="timeline-title">Primeros Lenguajes de Alto Nivel</h3>
+                    <p class="timeline-description">
+                        Se desarrollan FORTRAN y COBOL, los primeros lenguajes de programación de alto nivel. 
+                        Grace Hopper crea compiladores revolucionarios que facilitan la programación y hacen 
+                        accesible el desarrollo de software a más profesionales. Estos lenguajes democratizan 
+                        la programación y permiten aplicaciones científicas y comerciales más complejas.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 7 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">🇲🇽</div>
+                <div class="timeline-content">
+                    <img src="images/unam.jpg" alt="UNAM" class="timeline-image">
+                    <span class="timeline-year">1958</span>
+                    <h3 class="timeline-title">Primera Computadora en Latinoamérica</h3>
+                    <p class="timeline-description">
+                        El Ing. Sergio Beltrán López propone al Dr. Nabor Carrillo Flores (rector de la UNAM) 
+                        la instalación de una computadora IBM-650, la primera en toda Latinoamérica. 
+                        Se firma un contrato de renta por 25,000 pesos mensuales, marcando el inicio 
+                        de la computación en México y toda América Latina, impulsando el desarrollo 
+                        tecnológico regional.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 8 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">📝</div>
+                <div class="timeline-content">
+                    <img src="images/cobol.jpg" alt="COBOL" class="timeline-image">
+                    <span class="timeline-year">1959</span>
+                    <h3 class="timeline-title">Estandarización del Lenguaje COBOL</h3>
+                    <p class="timeline-description">
+                        El lenguaje COBOL se estandariza con el objetivo de establecer un lenguaje de programación 
+                        universal que pudiera ser usado en cualquier ordenador, orientado principalmente a los 
+                        negocios y la informática de gestión. Revolucionó el procesamiento de datos comerciales 
+                        y estableció estándares de programación que perduran décadas después.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 9 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">🔬</div>
+                <div class="timeline-content">
+                    <img src="images/Mary-Kenneth-Keller.jpg" alt="Mary Kenneth Keller" class="timeline-image">
+                    <span class="timeline-year">1965</span>
+                    <h3 class="timeline-title">Primera Mujer Doctora en Computación</h3>
+                    <p class="timeline-description">
+                        Mary Kenneth Keller se convierte en la primera mujer en doctorarse en Ciencias de la 
+                        Computación y contribuye notablemente al desarrollo del lenguaje BASIC. Su trabajo 
+                        abrió puertas para las mujeres en la computación y demostró la importancia de la 
+                        diversidad en el campo tecnológico, inspirando a futuras generaciones.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 10 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">🏢</div>
+                <div class="timeline-content">
+                    <img src="images/intel.jpg" alt="Intel" class="timeline-image">
+                    <span class="timeline-year">1968</span>
+                    <h3 class="timeline-title">Fundación de Intel Corporation</h3>
+                    <p class="timeline-description">
+                        Se funda Intel "Integrated Electronics Corporation", empresa que se convertiría 
+                        en líder mundial en semiconductores y procesadores. Intel revolucionó la industria 
+                        con sus microprocesadores, haciendo posible la miniaturización de computadoras 
+                        y sentando las bases tecnológicas para la revolución de las computadoras personales.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 11 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">👩‍🚀</div>
+                <div class="timeline-content">
+                    <img src="images/MargaretHamilton.jpeg" alt="Margaret Hamilton" class="timeline-image">
+                    <span class="timeline-year">1969</span>
+                    <h3 class="timeline-title">Acuñación del término "Ingeniería de Software"</h3>
+                    <p class="timeline-description">
+                        Margaret Hamilton, directora de la División de Ingeniería de Software del 
+                        Laboratorio del MIT, acuña el término "ingeniería de software" durante el 
+                        desarrollo del software para el Programa Espacial Apollo. Su trabajo estableció 
+                        la ingeniería de software como disciplina formal y respetada, demostrando que 
+                        el software requiere el mismo rigor que otras ingenierías.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 12 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">💻</div>
+                <div class="timeline-content">
+                    <img src="images/microprocesador.jpg" alt="Microprocesador" class="timeline-image">
+                    <span class="timeline-year">1971-1981</span>
+                    <h3 class="timeline-title">Era del Microprocesador y PC</h3>
+                    <p class="timeline-description">
+                        Intel fabrica el primer microprocesador (Intel 4004) en 1971. En 1975 aparecen las 
+                        primeras PC (Altair 8800, Apple I) y en 1981 IBM lanza su primera computadora personal. 
+                        La computación se democratiza y llega a hogares y pequeñas empresas, transformando 
+                        la sociedad y creando una industria masiva de hardware y software.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 13 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">🎯</div>
+                <div class="timeline-content">
+                    <img src="images/itv.jpg" alt="México ISC" class="timeline-image">
+                    <span class="timeline-year">1981-1986</span>
+                    <h3 class="timeline-title">Ingeniería en Sistemas Computacionales en México</h3>
+                    <p class="timeline-description">
+                        La carrera de Ingeniería en Sistemas Computacionales se implanta oficialmente en México. 
+                        Los Institutos Tecnológicos de Veracruz, Querétaro y San Luis Potosí son pioneros en 
+                        1981, seguidos por Saltillo en 1986, formalizando la profesión en el país y estableciendo 
+                        programas educativos estandarizados que forman ingenieros especializados.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 14 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">🌐</div>
+                <div class="timeline-content">
+                    <img src="images/World-Wide-Web.jpg" alt="World Wide Web" class="timeline-image">
+                    <span class="timeline-year">1991</span>
+                    <h3 class="timeline-title">World Wide Web (WWW)</h3>
+                    <p class="timeline-description">
+                        Tim Berners-Lee desarrolla la World Wide Web en el CERN, revolucionando el acceso a 
+                        la información y la comunicación global. Este invento transforma radicalmente la sociedad 
+                        y crea una demanda masiva de ingenieros en sistemas para desarrollo web, comercio 
+                        electrónico y servicios en línea, cambiando para siempre la forma de trabajar y comunicarse.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 15 -->
+            <div class="timeline-item left">
+                <div class="timeline-icon">☕</div>
+                <div class="timeline-content">
+                    <img src="images/Google.jpg" alt="Google" class="timeline-image">
+                    <span class="timeline-year">1998-2000</span>
+                    <h3 class="timeline-title">Revolución Digital</h3>
+                    <p class="timeline-description">
+                        Google revoluciona la búsqueda web (1998) y comienza el boom tecnológico del punto-com. 
+                        El cambio de milenio marca el inicio de la explosión de Internet, comercio electrónico, 
+                        y la integración masiva de computadoras en todos los sectores productivos del mundo. 
+                        La economía digital emerge como fuerza dominante global.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Evento 16 -->
+            <div class="timeline-item right">
+                <div class="timeline-icon">🚀</div>
+                <div class="timeline-content">
+                    <img src="images/ai.jpg" alt="IA y Cloud" class="timeline-image">
+                    <span class="timeline-year">2000-Presente</span>
+                    <h3 class="timeline-title">Era de IA, Cloud y Big Data</h3>
+                    <p class="timeline-description">
+                        La profesión evoluciona hacia inteligencia artificial, computación en la nube, 
+                        ciberseguridad, Big Data, IoT y blockchain. Los ingenieros en sistemas se especializan 
+                        en áreas emergentes como machine learning, DevOps, análisis de datos masivos y 
+                        arquitecturas distribuidas, siendo fundamentales para la transformación digital 
+                        de la sociedad global.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p><strong>Actividad 3.1: Línea de Tiempo - Ingeniería en Sistemas Computacionales</strong></p>
+            <p>La Ingeniería en Sistemas Computacionales continúa evolucionando, adaptándose a las necesidades tecnológicas del mundo moderno.</p>
+            <p style="margin-top: 20px; color: #a0aec0; font-size: 0.85em;">
+                Fundamentos de Investigación | Alejandra Sánchez Munguía
+            </p>
+        </div>
+    </div>
+</body>
+</html>
